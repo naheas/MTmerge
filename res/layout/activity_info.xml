@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Info_MainActivity" >
+
+    <ImageButton
+        android:id="@+id/infobutton4"
+        android:layout_width="74dp"
+        android:layout_height="71dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="24dp"
+        android:src="@drawable/rosemarybutton" />
+
+    <ImageButton
+        android:id="@+id/infobutton5"
+        android:layout_width="74dp"
+        android:layout_height="71dp"
+        android:layout_alignLeft="@+id/infobutton2"
+        android:layout_alignRight="@+id/infobutton3"
+        android:layout_alignTop="@+id/infobutton4"
+        android:scaleType="center"
+        android:src="@drawable/greenbutton" />
+
+    <ImageButton
+        android:id="@+id/infobutton6"
+        android:layout_width="74dp"
+        android:layout_height="71dp"
+        android:layout_alignLeft="@+id/infobutton4"
+        android:layout_alignRight="@+id/infobutton2"
+        android:layout_below="@+id/infobutton4"
+        android:layout_marginTop="21dp"
+        android:src="@drawable/yellowbutton" />
+
+    <ImageButton
+        android:id="@+id/infobutton7"
+        android:layout_width="74dp"
+        android:layout_height="71dp"
+        android:layout_alignRight="@+id/infobutton5"
+        android:layout_alignTop="@+id/infobutton6"
+        android:src="@drawable/darkbluebutton" />
+
+    <ImageButton
+        android:id="@+id/infobutton1"
+        android:layout_width="74dp"
+        android:layout_height="71dp"
+        android:layout_above="@+id/infobutton4"
+        android:layout_alignLeft="@+id/infobutton4"
+        android:layout_marginBottom="18dp"
+        android:src="@drawable/redbutton" />
+
+    <ImageButton
+        android:id="@+id/infobutton2"
+        android:layout_width="74dp"
+        android:layout_height="71dp"
+        android:layout_alignTop="@+id/infobutton1"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/darkbluebutton" />
+
+    <ImageButton
+        android:id="@+id/infobutton3"
+        android:layout_width="74dp"
+        android:layout_height="71dp"
+        android:layout_alignTop="@+id/infobutton2"
+        android:layout_marginLeft="21dp"
+        android:layout_toRightOf="@+id/infobutton2"
+        android:src="@drawable/yellowbutton" />
+
+</RelativeLayout>
