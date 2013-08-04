@@ -72,6 +72,7 @@ public class Tab3Activity extends Activity {
 
 			final Alcohol data = this.getItem(position);
 
+
 			if (data != null) {
 				// 화면 출력
 				TextView tv = (TextView) view.findViewById(R.id.tv_tab3_alc_name);
@@ -82,6 +83,44 @@ public class Tab3Activity extends Activity {
 				
 				tv2.setText(String.valueOf(data.getbottle()));
 				adapter.notifyDataSetChanged();
+
+				Button btn_up = (Button)view.findViewById(R.id.btn_tab3_alcohol_up);
+				btn_up.setOnClickListener(new ImageButton.OnClickListener(){
+
+					@Override
+					public void onClick(View v) {
+						data.bottle++;
+								
+						TextView total_alc = (TextView)findViewById(R.id.tv_tab3_5);
+						Double total = Double.parseDouble(total_alc.getText().toString())+data.getabsolute_alc();
+						total_alc.setText(total.toString());
+						
+						    		
+					}	
+					
+				}
+				);
+				
+					
+				Button btn_down = (Button)view.findViewById(R.id.btn_tab3_alcohol_down);
+				btn_down.setOnClickListener(new ImageButton.OnClickListener(){
+
+					@Override
+					public void onClick(View v) {
+						if(data.bottle==0)
+							return;
+						data.bottle--;
+						
+						TextView total_alc = (TextView)findViewById(R.id.tv_tab3_5);
+						Double total = Double.parseDouble(total_alc.getText().toString())-data.getabsolute_alc();
+						total_alc.setText(total.toString());
+						
+						    		
+					}	
+					
+				}
+				);
+
 			}
 			return view;
 		}
@@ -114,14 +153,14 @@ public class Tab3Activity extends Activity {
 		}
 
 		public void up(){
-			bottle++;
-		
+			
 			Button btn_up = (Button)findViewById(R.id.btn_tab3_alcohol_up);
 			btn_up.setOnClickListener(new ImageButton.OnClickListener(){
 
 				@Override
 				public void onClick(View v) {
-					
+					bottle++;
+							
 					TextView total_alc = (TextView)findViewById(R.id.tv_tab3_6);
 					Double total = Double.parseDouble(total_alc.getText().toString())+getabsolute_alc();
 					total_alc.setText(total.toString());
@@ -136,28 +175,7 @@ public class Tab3Activity extends Activity {
 		}
 		
 		public void down(){
-			if(bottle==0)
-				return;
-			else{
-				bottle--;
-				
-				Button btn_down = (Button)findViewById(R.id.btn_tab3_alcohol_down);
-				btn_down.setOnClickListener(new ImageButton.OnClickListener(){
-
-					@Override
-					public void onClick(View v) {
-						
-						TextView total_alc = (TextView)findViewById(R.id.tv_tab3_6);
-						Double total = Double.parseDouble(total_alc.getText().toString())-getabsolute_alc();
-						total_alc.setText(total.toString());
-						
-						    		
-					}	
-					
-				}
-				);
-
-			}
+			
 			
 			return;
 		}
@@ -165,6 +183,7 @@ public class Tab3Activity extends Activity {
 
 		
         
+		
 	}
 
 }
