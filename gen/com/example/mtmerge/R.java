@@ -29,33 +29,36 @@ public final class R {
         public static final int yellowbutton=0x7f020005;
     }
     public static final class id {
-        public static final int TextView01=0x7f080010;
-        public static final int action_settings=0x7f08001a;
-        public static final int btn_main_grouplist=0x7f080007;
-        public static final int btn_main_info=0x7f080008;
+        public static final int action_settings=0x7f08001d;
+        public static final int btn_grouplist_select=0x7f080001;
+        public static final int btn_main_grouplist=0x7f08000d;
+        public static final int btn_main_info=0x7f08000b;
         public static final int btn_main_place=0x7f080009;
-        public static final int btn_newgroup_finish=0x7f080014;
-        public static final int btn_tab1_add=0x7f080017;
-        public static final int checkBox1=0x7f080019;
-        public static final int et_newgroup_boy=0x7f08000e;
-        public static final int et_newgroup_girl=0x7f080011;
-        public static final int et_newgroup_groupname=0x7f08000b;
-        public static final int et_newgroup_place=0x7f080013;
-        public static final int infobutton1=0x7f080006;
-        public static final int infobutton2=0x7f080002;
-        public static final int infobutton3=0x7f080003;
-        public static final int infobutton4=0x7f080000;
-        public static final int infobutton5=0x7f080001;
-        public static final int infobutton6=0x7f080004;
-        public static final int infobutton7=0x7f080005;
-        public static final int lv_tab1_member=0x7f080016;
-        public static final int textView1=0x7f08000a;
-        public static final int textView2=0x7f08000c;
-        public static final int textView3=0x7f08000d;
-        public static final int textView4=0x7f080015;
-        public static final int textView5=0x7f08000f;
-        public static final int textView6=0x7f080012;
-        public static final int tv_tab1_allnum=0x7f080018;
+        public static final int btn_tab3_alcohol_down=0x7f08001c;
+        public static final int btn_tab3_alcohol_up=0x7f08001b;
+        public static final int infobutton1=0x7f080008;
+        public static final int infobutton2=0x7f080004;
+        public static final int infobutton3=0x7f080005;
+        public static final int infobutton4=0x7f080002;
+        public static final int infobutton5=0x7f080003;
+        public static final int infobutton6=0x7f080006;
+        public static final int infobutton7=0x7f080007;
+        public static final int layout_tab1_dialog_add=0x7f080015;
+        public static final int layout_tab1_dialog_delete=0x7f080017;
+        public static final int lv_grouplist=0x7f080000;
+        public static final int lv_tab3_alcohol=0x7f080014;
+        public static final int mainbutton1=0x7f08000a;
+        public static final int mainbutton2=0x7f08000c;
+        public static final int tv_tab1_dialog_add=0x7f080016;
+        public static final int tv_tab1_dialog_delete=0x7f080018;
+        public static final int tv_tab3_1=0x7f08000e;
+        public static final int tv_tab3_2=0x7f08000f;
+        public static final int tv_tab3_3=0x7f080010;
+        public static final int tv_tab3_4=0x7f080011;
+        public static final int tv_tab3_5=0x7f080012;
+        public static final int tv_tab3_6=0x7f080013;
+        public static final int tv_tab3_alc_bottle=0x7f08001a;
+        public static final int tv_tab3_alc_name=0x7f080019;
     }
     public static final class layout {
         public static final int activity_grouplist=0x7f030000;
@@ -67,7 +70,9 @@ public final class R {
         public static final int activity_tab3=0x7f030006;
         public static final int activity_tab4=0x7f030007;
         public static final int activity_tabwidget=0x7f030008;
-        public static final int tab1_memberlist_row=0x7f030009;
+        public static final int tab1_dialog_add=0x7f030009;
+        public static final int tab1_dialog_delete=0x7f03000a;
+        public static final int tab3_listviewitem=0x7f03000b;
     }
     public static final class menu {
         public static final int group_list=0x7f070000;
