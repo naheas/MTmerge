@@ -40,7 +40,8 @@ public class GroupListActivity extends Activity {
 
 	private void settingListView() {  
         _arrAdapter = new ArrayAdapter<String>( getApplicationContext(), android.R.layout.simple_list_item_1 ) ;  
-        ListView listView = (ListView) findViewById( R.id.lv_grouplist ) ;  
+
+        ListView listView = (ListView) findViewById(R.id.lv_grouplist) ;
         listView.setAdapter( _arrAdapter ) ;
         
         String sql = "select groupname, boy, girl, place from tb_group";
