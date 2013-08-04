@@ -40,7 +40,8 @@ public class GroupListActivity extends Activity {
 
 	private void settingListView() {  
         _arrAdapter = new ArrayAdapter<String>( getApplicationContext(), android.R.layout.simple_list_item_1 ) ;  
-        ListView listView = (ListView) findViewById( R.id.lv_grouplist) ;  
+
+        ListView listView = (ListView) findViewById(R.id.lv_grouplist) ;
         listView.setAdapter( _arrAdapter ) ;
         
         String sql = "select groupname, boy, girl, place from tb_group";
@@ -89,6 +90,9 @@ public class GroupListActivity extends Activity {
     		String boyStr = data.getExtras().getString("boy");
     		String girlStr = data.getExtras().getString("girl");
     		String placeStr = data.getExtras().getString("place");
+    		
+    		if(!isStringInt(boyStr)) boyStr = "0";
+    		if(!isStringInt(girlStr)) girlStr = "0";
     		
     		insertData(groupnameStr, boyStr, girlStr, placeStr);
     		refresh(groupnameStr);
@@ -167,7 +171,7 @@ public class GroupListActivity extends Activity {
 		int tempn = cursor.getInt(0);
 		cursor.close();
 		String tempStr = String.valueOf(tempn);
-		db_mt.execSQL("drop table mtmemstb" + tempStr);
+		db_mt.execSQL("drop table tb_member_" + tempStr);
 	}
 
 	private void insertData(String groupname, String boy, String girl, String place) {// 데이터
@@ -190,7 +194,7 @@ public class GroupListActivity extends Activity {
 		cursor.moveToPosition(position);
 		int tempn = cursor.getInt(0);
 		cursor.close();
-		db_mt.execSQL("delete from tb_group where group_id = '" + tempn + "'");
+		db_mt.execSQL("delete from tb_group where group_id = '" + String.valueOf(tempn) + "'");
 	}
 
 	private String getData(int position, int which) {// 쿼리로 값 받아오는 메소드
@@ -202,6 +206,15 @@ public class GroupListActivity extends Activity {
 		String temps = cursor.getString(which);
 		cursor.close();
 		return temps;
+	}
+	
+	public static boolean isStringInt(String s) {
+		try {
+			Integer.parseInt(s);
+			return true;
+		} catch (NumberFormatException e) {
+			return false;
+		}
 	}
 
 

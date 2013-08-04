@@ -75,13 +75,10 @@ public class Tab1Activity extends Activity {
 		memTbName = "tb_member_" + group_id;
 		
 		String boyStr = getDataGr(1);
-		if (isStringInt(boyStr)) {
-			boyNum = Integer.parseInt(boyStr);
-		}
+		boyNum = Integer.parseInt(boyStr);
 		String girlStr = getDataGr(2);
-		if (isStringInt(girlStr)) {
-			girlNum = Integer.parseInt(girlStr);
-		}		
+		girlNum = Integer.parseInt(girlStr);
+				
 		
 		((TextView)findViewById(R.id.tv_tab1_allnum)).setText(String.valueOf(boyNum + girlNum));
 	}
@@ -173,9 +170,10 @@ public class Tab1Activity extends Activity {
 	                	else boyNum--;
 	                	((TextView)findViewById(R.id.tv_tab1_allnum)).setText(String.valueOf(boyNum + girlNum));
 	                	
-	                    deleteDataMem(position);	            		
 	            		if(getDataMem(position, 2).equalsIgnoreCase("1")) updateBoyGirlGr(true, false); // girl, down
 	            		else updateBoyGirlGr(false, false); //boy, down
+	                    
+	            		deleteDataMem(position);
 	            		
 	                	mCustomAdapter.remove(position);
 	                    mCustomAdapter.notifyDataSetChanged();       
@@ -398,15 +396,6 @@ public class Tab1Activity extends Activity {
 				
 		String sql = "UPDATE tb_group SET " + tempStr + " = "+ String.valueOf(tempNum) + " WHERE group_id = " + group_id;
 		db_mt.execSQL(sql);
-	}
-
-	public static boolean isStringInt(String s) {
-		try {
-			Integer.parseInt(s);
-			return true;
-		} catch (NumberFormatException e) {
-			return false;
-		}
 	}
 
 }
