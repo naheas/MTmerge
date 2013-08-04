@@ -39,7 +39,7 @@ public final class R {
         public static final int btn_tab1_add=0x7f080019;
         public static final int btn_tab3_alcohol_down=0x7f08002a;
         public static final int btn_tab3_alcohol_up=0x7f080029;
-        public static final int checkBox1=0x7f080026;
+        public static final int cb_tab1_memberlist_row=0x7f080026;
         public static final int et_newgroup_boy=0x7f080010;
         public static final int et_newgroup_girl=0x7f080013;
         public static final int et_newgroup_groupname=0x7f08000d;
