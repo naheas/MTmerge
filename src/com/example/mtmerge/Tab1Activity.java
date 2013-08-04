@@ -117,7 +117,7 @@ public class Tab1Activity extends Activity {
 					}
 				});
 
-		alertDlg.setButton(DialogInterface.BUTTON_NEGATIVE, "여자",
+		alertDlg.setButton(DialogInterface.BUTTON_NEUTRAL, "여자",
 				new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
@@ -271,7 +271,7 @@ public class Tab1Activity extends Activity {
 				viewHolder = new ViewHolder();
 				// View를 inflater 시켜준다.
 				v = inflater.inflate(R.layout.tab1_memberlist_row, null);
-				viewHolder.cBox = (CheckBox) v.findViewById(R.id.btn_tab1_add);
+				viewHolder.cBox = (CheckBox) v.findViewById(R.id.cb_tab1_memberlist_row);
 				v.setTag(viewHolder);
 			}
 
@@ -333,7 +333,7 @@ public class Tab1Activity extends Activity {
 		if(sexBool) sexNum = 1; // 1=Girl
 		else sexNum = 0;// 0=Boy
 		
-		String sql = "insert into " + memTbName + "(mem_name, money) values('"
+		String sql = "insert into " + memTbName + "(mem_name, money, sex) values('"
 				+ mem_name + "', '" + moneyNum + "', '" + sexNum + "')";
 		// 마찬가지로, 정의한 쿼리를 보냅니다.
 		db_mt.execSQL(sql);

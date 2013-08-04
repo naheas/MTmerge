@@ -5,7 +5,7 @@
     android:orientation="vertical" >
 
     <CheckBox
-        android:id="@+id/checkBox1"
+        android:id="@+id/cb_tab1_memberlist_row"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="CheckBox" />
