@@ -8,8 +8,8 @@
         android:id="@+id/btn_main_place"
         android:layout_width="90dp"
         android:layout_height="90dp"
-        android:layout_alignLeft="@+id/mainbutton1"
-        android:layout_below="@+id/mainbutton1"
+        android:layout_alignLeft="@+id/btn_main_grouplist"
+        android:layout_below="@+id/btn_main_grouplist"
         android:layout_marginTop="22dp"
         android:src="@drawable/darkbluebutton" />
 
@@ -17,8 +17,8 @@
         android:id="@+id/btn_main_info"
         android:layout_width="90dp"
         android:layout_height="90dp"
-        android:layout_alignRight="@+id/mainbutton1"
-        android:layout_alignTop="@+id/mainbutton2"
+        android:layout_alignRight="@+id/btn_main_grouplist"
+        android:layout_alignTop="@+id/btn_main_place"
         android:src="@drawable/yellowbutton" />
 
     <ImageButton
