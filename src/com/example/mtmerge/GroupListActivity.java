@@ -15,7 +15,7 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-public class GroupListActivity extends Activity {
+public class GroupListActivity extends BaseActivity {
 	private static final int NewGr_ACTIVITY = 1;
 
 	private ArrayAdapter<String> _arrAdapter ;
