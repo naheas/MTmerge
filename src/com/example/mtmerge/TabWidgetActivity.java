@@ -7,7 +7,7 @@ import android.content.res.Resources;
 import android.view.Window;
 import android.widget.TabHost;
 
-public class TabWidgetActivity extends TabActivity {
+public class TabWidgetActivity extends TabActivity{
     
     @Override
     public void onCreate(Bundle savedInstanceState) {

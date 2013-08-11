@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 
 
-public class NewGroupActivity extends Activity {
+public class NewGroupActivity extends BaseActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
