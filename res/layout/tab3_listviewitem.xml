@@ -22,8 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:orientation="vertical"
-        android:layout_gravity="right"
-        android:layout_weight="1">
+        android:layout_gravity="right">
 
         <Button
             android:id="@+id/btn_tab3_alcohol_up"

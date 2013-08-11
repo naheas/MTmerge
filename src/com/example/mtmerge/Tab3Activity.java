@@ -41,7 +41,7 @@ public class Tab3Activity extends Activity {
 		listview.setAdapter(adapter);
 		
 		//data Alcohol( getAppCon(), 병수 , 병당소주량 , 주종);
-		adapter.add(new Alcohol(getApplicationContext(), 0, 0.25, "맥주"));
+		adapter.add(new Alcohol(getApplicationContext(), 0, 1.12, "맥주"));
 		adapter.add(new Alcohol(getApplicationContext(), 0, 1, "소주"));
 		adapter.add(new Alcohol(getApplicationContext(), 0, 4, "앱솔루트보드카"));
 		adapter.add(new Alcohol(getApplicationContext(), 0, 3.5, "예거마이스터"));
@@ -93,7 +93,8 @@ public class Tab3Activity extends Activity {
 								
 						TextView total_alc = (TextView)findViewById(R.id.tv_tab3_5);
 						Double total = Double.parseDouble(total_alc.getText().toString())+data.getabsolute_alc();
-						total_alc.setText(total.toString());
+						String total_str = String.format("%.2f", total);
+						total_alc.setText(total_str);
 						
 						    		
 					}	
@@ -113,7 +114,8 @@ public class Tab3Activity extends Activity {
 						
 						TextView total_alc = (TextView)findViewById(R.id.tv_tab3_5);
 						Double total = Double.parseDouble(total_alc.getText().toString())-data.getabsolute_alc();
-						total_alc.setText(total.toString());
+						String total_str = String.format("%.2f", total);
+						total_alc.setText(total_str);
 						
 						    		
 					}	
