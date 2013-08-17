@@ -15,7 +15,7 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-public class GroupListActivity extends BaseActivity {
+public class GroupListActivity extends Activity {
 	private static final int NewGr_ACTIVITY = 1;
 
 	private ArrayAdapter<String> _arrAdapter ;
@@ -129,6 +129,7 @@ public class GroupListActivity extends BaseActivity {
                 public void onClick( DialogInterface dialog, int which ) 
                 {
                 	deleteMemTable(position);
+                	deleteOutcomeTable(position);
                 	deleteData(position);
                	 	_arrAdapter.remove(selectedStr);
                     // 아래 method를 호출하지 않을 경우, 삭제된 item이 화면에 계속 보여진다.
@@ -172,6 +173,18 @@ public class GroupListActivity extends BaseActivity {
 		cursor.close();
 		String tempStr = String.valueOf(tempn);
 		db_mt.execSQL("drop table tb_member_" + tempStr);
+	}
+	
+	private void deleteOutcomeTable(int position) { // 테이블 생성 메소드
+		// 테이블 생성 쿼리를 정의합니다. id값과 x y 를 텍스트형태로 만듭니다.		
+		String sql = "select group_id from tb_group";
+		// 정의한 쿼리를 보내기 전에, Cousor라는 친구에게 넣어줍니다.
+		Cursor cursor = db_mt.rawQuery(sql, null);
+		cursor.moveToPosition(position);
+		int tempn = cursor.getInt(0);
+		cursor.close();
+		String tempStr = String.valueOf(tempn);
+		db_mt.execSQL("drop table tb_outcome_" + tempStr);
 	}
 
 	private void insertData(String groupname, String boy, String girl, String place) {// 데이터

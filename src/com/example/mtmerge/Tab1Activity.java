@@ -23,7 +23,7 @@ import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class Tab1Activity extends BaseActivity {
+public class Tab1Activity extends Activity {
 
 	private ListView mListView = null;
 	// Data를 관리해주는 Adapter

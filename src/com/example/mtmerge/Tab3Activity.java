@@ -16,7 +16,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class Tab3Activity extends BaseActivity {
+public class Tab3Activity extends Activity {
 
 	private ListView listview;
 
