@@ -47,7 +47,7 @@ public class TabWidgetActivity extends TabActivity{
         intent_tab = new Intent(this, Tab4Activity.class);
         intent_tab.putExtra("group_position", group_position);
         spec = tabHost.newTabSpec("tab4")
-             .setIndicator("가계부", res.getDrawable(android.R.drawable.sym_action_call))
+             .setIndicator("가계부")
              .setContent(intent_tab);
         tabHost.addTab(spec);
         
