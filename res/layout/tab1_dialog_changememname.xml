@@ -9,17 +9,22 @@
         android:layout_height="wrap_content" >
 
         <TextView
-            android:id="@+id/tv_tab1_memberlist_row"
+            android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.72"
-            android:text="Medium Text"
-            android:textAppearance="?android:attr/textAppearance" />
+            android:textColor="#000000"
+            android:text="  이름  "
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
-        <CheckBox
-            android:id="@+id/cb_tab1_memberlist_row"
+        <EditText
+            android:id="@+id/et_tab1_memnewname"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:textColor="#000000"
+            android:gravity="right" />
+        
     </LinearLayout>
 
 </LinearLayout>

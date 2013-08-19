@@ -2,6 +2,8 @@ package com.example.mtmerge;
 
 import java.util.ArrayList;
 
+import com.example.mtmerge.Tab4Activity.OutcomeUnit;
+
 
 
 import android.app.Activity;
@@ -14,12 +16,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -30,6 +32,7 @@ public class Tab1Activity extends Activity {
 	private CustomAdapter mCustomAdapter = null;
 	// 제네릭(String)을 사용한 ArrayList
 	private ArrayList<String> mArrayList = new ArrayList<String>();
+	private ArrayList<Boolean> mIsCheckedList = new ArrayList<Boolean>();
 
 	int group_position;	
 	int boyNum = 0;
@@ -58,10 +61,10 @@ public class Tab1Activity extends Activity {
 		initList();
 		
 		mListView = (ListView) findViewById(R.id.lv_tab1_member);
-		mCustomAdapter = new CustomAdapter(Tab1Activity.this, mArrayList);
+		mCustomAdapter = new CustomAdapter(Tab1Activity.this, mArrayList, mIsCheckedList);
 		mListView.setAdapter(mCustomAdapter);
-		mListView.setOnItemClickListener(new mItemClickListener());
-		mListView.setOnItemLongClickListener( new ListViewItemLongClickListener() );
+//		mListView.setOnItemClickListener(new mItemClickListener());
+//		mListView.setOnItemLongClickListener( new ListViewItemLongClickListener() );
 	}
 
 	protected void onDestroy() {
@@ -89,6 +92,8 @@ public class Tab1Activity extends Activity {
 		cursor.moveToFirst();
 		for(int i = 0; i < cursor.getCount(); i++){
 			mArrayList.add(cursor.getString(0));
+			if(cursor.getInt(1) == 0) mIsCheckedList.add(false);
+			else mIsCheckedList.add(true);			
 			cursor.moveToNext();
 		}
 		cursor.close();
@@ -140,7 +145,7 @@ public class Tab1Activity extends Activity {
 	}
 
 	// ListView 안에 Item을 클릭시에 호출되는 Listener
-	private class mItemClickListener implements OnItemClickListener {
+/*	private class mItemClickListener implements OnItemClickListener {
 
 		public void onItemClick(AdapterView<?> arg0, View arg1, int position,
 				long arg3) {
@@ -197,7 +202,7 @@ public class Tab1Activity extends Activity {
 	       }
 	    
 	   }
-
+*/
 	// Custom Adapter
 	class CustomAdapter extends BaseAdapter {
 
@@ -205,17 +210,18 @@ public class Tab1Activity extends Activity {
 		// 뷰를 새로 만들기 위한 Inflater
 		private LayoutInflater inflater = null;
 		private ArrayList<String> sArrayList = new ArrayList<String>();
-		private ArrayList<Boolean> isCheckedConfrim = new ArrayList<Boolean>();;
+		private ArrayList<Boolean> isCheckedConfrim = new ArrayList<Boolean>();
 
-		public CustomAdapter(Context c, ArrayList<String> mList) {
+		public CustomAdapter(Context c, ArrayList<String> mList, ArrayList<Boolean> mBoolList) {
 			inflater = LayoutInflater.from(c);
 			this.sArrayList = mList;
 			// ArrayList Size 만큼의 boolean 배열을 만든다.
 			// CheckBox의 true/false를 구별 하기 위해
-			for (int i = 0; i < sArrayList.size(); i++) {
+			this.isCheckedConfrim = mBoolList;
+/*			for (int i = 0; i < sArrayList.size(); i++) {
 				this.isCheckedConfrim.add(false);
 			}
-		}
+*/		}
 
 		public void add(String tempStr) {
 			sArrayList.add(tempStr);
@@ -231,6 +237,10 @@ public class Tab1Activity extends Activity {
 			boolean tempBool = !isCheckedConfrim.get(position);
 			isCheckedConfrim.set(position, tempBool); // isCheckedConfrim[position]
 														// = ischeked; 체크하기
+		}
+		
+		public void updateName(int position, String name){
+			sArrayList.set(position, name);
 		}
 
 		public ArrayList<Integer> getChecked() {
@@ -260,7 +270,7 @@ public class Tab1Activity extends Activity {
 		}
 
 		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
+		public View getView(final int position, View convertView, ViewGroup parent) {
 
 			// ConvertView가 null 일 경우
 			View v = convertView;
@@ -269,6 +279,7 @@ public class Tab1Activity extends Activity {
 				viewHolder = new ViewHolder();
 				// View를 inflater 시켜준다.
 				v = inflater.inflate(R.layout.tab1_memberlist_row, null);
+				viewHolder.tView = (TextView) v.findViewById(R.id.tv_tab1_memberlist_row);
 				viewHolder.cBox = (CheckBox) v.findViewById(R.id.cb_tab1_memberlist_row);
 				v.setTag(viewHolder);
 			}
@@ -279,10 +290,103 @@ public class Tab1Activity extends Activity {
 
 			// CheckBox는 기본적으로 이벤트를 가지고 있기 때문에 ListView의 아이템
 			// 클릭리즈너를 사용하기 위해서는 CheckBox의 이벤트를 없애 주어야 한다.
-			viewHolder.cBox.setClickable(false);
-			viewHolder.cBox.setFocusable(false);
+//			viewHolder.cBox.setClickable(false);
+//			viewHolder.cBox.setFocusable(false);
 
-			viewHolder.cBox.setText(sArrayList.get(position));
+			viewHolder.cBox.setOnClickListener(new OnClickListener() {
+	            @Override
+	            public void onClick(View v) {
+	                // TODO Auto-generated method stub
+	            	updateMoneyDataMem(position, !isCheckedConfrim.get(position));
+	            	
+	            	mCustomAdapter.setChecked(position);
+	    			// Data 변경시 호출 Adapter에 Data 변경 사실을 알려줘서 Update 함.
+	    			mCustomAdapter.notifyDataSetChanged();
+	            }
+	        });
+			
+			viewHolder.tView.setOnClickListener(new OnClickListener() {
+	            @Override
+	            public void onClick(View v) {
+	                // TODO Auto-generated method stub
+	            	Context mContext = getApplicationContext();
+	        		LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
+	        		final View layout = inflater.inflate(R.layout.tab1_dialog_changememname, null);
+
+	        		AlertDialog.Builder aDialog = new AlertDialog.Builder(Tab1Activity.this);
+	        		aDialog.setView(layout);
+	        		aDialog.setTitle("이름 수정하기");
+	        		
+	        		final EditText et_name = (EditText) layout.findViewById(R.id.et_tab1_memnewname);
+	        		et_name.setText(getDataMem(position, 0));
+
+	        		aDialog.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+	        			public void onClick(DialogInterface dialog, int which) {
+	        				String name = et_name.getText().toString();
+	        				updateNameDataMem(position, name);
+	        				mCustomAdapter.updateName(position, name);
+	        				mCustomAdapter.notifyDataSetChanged();
+	        			}
+	        		});
+
+	        		aDialog.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+	        			public void onClick(DialogInterface dialog, int which) {
+	        				return;
+	        			}
+	        		});
+
+	        		AlertDialog ad = aDialog.create();
+	        		ad.show();
+	            }
+	        });
+			
+			viewHolder.tView.setOnLongClickListener(new OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                	final String selectedStr = getDataMem(position, 0);
+                	AlertDialog alertDlg = new AlertDialog.Builder(Tab1Activity.this).create();
+                	alertDlg.setTitle("Delete?");
+                	alertDlg.setMessage("Do you want to delete " + selectedStr + "?");
+                	// '예' 버튼이 클릭되면
+                	alertDlg.setButton(DialogInterface.BUTTON_POSITIVE, "Yes", new DialogInterface.OnClickListener()
+                	{
+     	                @Override
+     	                public void onClick( DialogInterface dialog, int which ) 
+     	                {
+     	                	if(getDataMem(position, 2).equalsIgnoreCase("1")) girlNum--;
+     	                	else boyNum--;
+     	                	((TextView)findViewById(R.id.tv_tab1_allnum)).setText(String.valueOf(boyNum + girlNum));
+     	                	
+     	            		if(getDataMem(position, 2).equalsIgnoreCase("1")) updateBoyGirlGr(true, false); // girl, down
+     	            		else updateBoyGirlGr(false, false); //boy, down
+     	                    
+     	            		deleteDataMem(position);
+     	            		
+     	            		mCustomAdapter.remove(position);
+     	                    mCustomAdapter.notifyDataSetChanged();       
+     	                    
+     	                    return;
+     	                }
+                	});
+     	           
+     	           // '아니오' 버튼이 클릭되면
+     	           alertDlg.setButton(DialogInterface.BUTTON_NEGATIVE, "No", new DialogInterface.OnClickListener()
+     	           {
+     	                @Override
+     	                public void onClick( DialogInterface dialog, int which ) {
+     	                	return;
+     	                }
+     	           });
+     	           
+     	           
+     	           alertDlg.show();
+     	           return true;
+     	       
+                }
+            });
+			
+			
+			viewHolder.tView.setText(sArrayList.get(position));
 			// isCheckedConfrim 배열은 초기화시 모두 false로 초기화 되기때문에
 			// 기본적으로 false로 초기화 시킬 수 있다.
 			viewHolder.cBox.setChecked(isCheckedConfrim.get(position));
@@ -292,6 +396,7 @@ public class Tab1Activity extends Activity {
 	}
 
 	class ViewHolder {
+		private TextView tView = null;
 		// 새로운 Row에 들어갈 CheckBox
 		private CheckBox cBox = null;
 	}
@@ -347,6 +452,34 @@ public class Tab1Activity extends Activity {
 		cursor.close();
 		db_mt.execSQL("delete from " + memTbName + " where mem_id = '" + tempn + "'");
 	}
+	
+	private void updateNameDataMem(int position, String memNewName){		
+		String sql1 = "select mem_id from " + memTbName;
+		// 정의한 쿼리를 보내기 전에, Cousor라는 친구에게 넣어줍니다.
+		Cursor cursor = db_mt.rawQuery(sql1, null);
+		cursor.moveToPosition(position);
+		int tempn = cursor.getInt(0);
+		cursor.close();
+				
+		String sql2 = "UPDATE " + memTbName + " SET mem_name = '" + memNewName + "' WHERE mem_id = '" + tempn + "'";
+		db_mt.execSQL(sql2);
+	}
+	
+	private void updateMoneyDataMem(int position, boolean newMoney){		
+		String sql1 = "select mem_id from " + memTbName;
+		// 정의한 쿼리를 보내기 전에, Cousor라는 친구에게 넣어줍니다.
+		Cursor cursor = db_mt.rawQuery(sql1, null);
+		cursor.moveToPosition(position);
+		int tempn = cursor.getInt(0);
+		cursor.close();
+		
+		int tempMoney;		
+		if(newMoney) tempMoney = 1;
+		else tempMoney = 0;
+				
+		String sql2 = "UPDATE " + memTbName + " SET money = " + tempMoney + " WHERE mem_id = '" + tempn + "'";
+		db_mt.execSQL(sql2);
+	}	
 
 	
 	private String getDataMem(int position, int which) {// 쿼리로 값 받아오는 메소드
