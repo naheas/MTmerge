@@ -3,6 +3,9 @@ package com.example.mtmerge;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -21,9 +24,16 @@ public class Tab2Activity extends Activity {
 
 	DataAdapter adapter;
 	ArrayList<food> alist;
+	SQLiteDatabase db_mt;
+	
+	
+	int group_position;	
+	int boyNum = 0;
+	int girlNum = 0;
 
-	/** Called when the activity is first created. */
-	@Override
+	String group_id;
+	String foodTbName;
+
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 
@@ -39,14 +49,35 @@ public class Tab2Activity extends Activity {
 		// 리스트뷰에 어댑터 연결
 		listview.setAdapter(adapter);
 		
-		//data Alcohol( getAppCon(), 병수 , 병당소주량 , 주종);
-		adapter.add(new food(getApplicationContext(), 1,"밥"));
-		adapter.add(new food(getApplicationContext(), 2,"고기"));
-		adapter.add(new food(getApplicationContext(), 5,"물"));
-		adapter.add(new food(getApplicationContext(), 10,"상추"));
+		
+		Intent myintent = getIntent();
+		group_position = myintent.getExtras().getInt("group_position");
+		
+		db_mt = openOrCreateDatabase("db_mt", MODE_PRIVATE, null);
+
+		initBoyGirlNumTbName();
+		createifnotexistMemberTable();
+
+
+		
+		//insertDataFood(food_name, quantity, real)
+		insertDataFood("쌀"	,100,1);
+		insertDataFood("고기"	,250,1);
+		insertDataFood("상추"	,0.2,1);
+		insertDataFood("버섯"	,0.2,1);
+		insertDataFood("소세지",0.2,1);
+		insertDataFood("만두",0.2	,1);
+		insertDataFood("물"	,0.25,1);
+		insertDataFood("음료수",0.25,1);
+		insertDataFood("과자"	,1,1);
+		insertDataFood("젓가락",4,1);
+		insertDataFood("그릇",1,1);
+		insertDataFood("종이컵",5,1);
+
 		
 
 	}
+
 
 	private class DataAdapter extends ArrayAdapter<food> {
 
@@ -60,7 +91,7 @@ public class Tab2Activity extends Activity {
 
 
 		@Override
-		public View getView(int position, View v, ViewGroup parent) {
+		public View getView(final int position, View v, ViewGroup parent) {
 		
 			View view = null;
 
@@ -80,8 +111,15 @@ public class Tab2Activity extends Activity {
 				tv.setText(data.get_foodname());
 				// 텍스트뷰2에 getData()을 출력 즉 두번째 인수값
 				
-				tv2.setText(String.valueOf(data.get_quantity()));
-		
+	
+
+				Cursor mycursor =	db_mt.rawQuery("SELECT * FROM "+ foodTbName, null);
+				mycursor.moveToPosition(position);
+				
+				Double mytotal = (double) (mycursor.getFloat(2)*mycursor.getFloat(3));
+				tv2.setText(String.format("%.2f", mytotal));
+
+				
 				adapter.notifyDataSetChanged();
 
 				Button btn_no = (Button)view.findViewById(R.id.btn_tab2_food_0);
@@ -90,11 +128,16 @@ public class Tab2Activity extends Activity {
 					@Override
 					public void onClick(View v) {
 								
-						TextView quantity = (TextView)findViewById(R.id.tv_tab2_food_quantity);
-						Double total = data.get_quantity()*0;
-						tv2.setText(total.toString());
-						data.quantity=data.real*0;
 						
+						Cursor cursor =	db_mt.rawQuery("SELECT * FROM "+foodTbName, null);
+						cursor.moveToPosition(position);
+						
+						db_mt.execSQL("UPDATE "+ foodTbName + " SET sosu = 0 WHERE food_id = " + cursor.getInt(0));
+						
+						cursor = db_mt.rawQuery("SELECT * FROM "+foodTbName, null);
+						cursor.moveToPosition(position);
+						Double total = (double) (cursor.getFloat(2)*cursor.getFloat(3));
+						tv2.setText(total.toString());
 						    		
 					}	
 					
@@ -107,11 +150,16 @@ public class Tab2Activity extends Activity {
 					@Override
 					public void onClick(View v) {
 								
-						TextView quantity = (TextView)findViewById(R.id.tv_tab2_food_quantity);
-						Double total = data.get_quantity()*0.75;
-						tv2.setText(total.toString());
-						data.quantity=data.real*0.75;
+						Cursor cursor =	db_mt.rawQuery("SELECT * FROM "+foodTbName, null);
+						cursor.moveToPosition(position);
 						
+						db_mt.execSQL("UPDATE "+ foodTbName + " SET sosu = 0.75 WHERE food_id = " + cursor.getInt(0));
+
+						cursor = db_mt.rawQuery("SELECT * FROM "+foodTbName, null);
+						cursor.moveToPosition(position);
+						Double total = (double) (cursor.getFloat(2)*cursor.getFloat(3));
+						tv2.setText(total.toString());
+
 						    		
 					}	
 					
@@ -124,12 +172,16 @@ public class Tab2Activity extends Activity {
 					@Override
 					public void onClick(View v) {
 								
-						TextView quantity = (TextView)findViewById(R.id.tv_tab2_food_quantity);
-						Double total = data.get_quantity();
-						tv2.setText(total.toString());
-						data.quantity=data.real*1;
+						Cursor cursor =	db_mt.rawQuery("SELECT * FROM "+foodTbName, null);
+						cursor.moveToPosition(position);
 						
-						    		
+						db_mt.execSQL("UPDATE "+ foodTbName + " SET sosu = 1.0 WHERE food_id = " + cursor.getInt(0));
+
+						cursor = db_mt.rawQuery("SELECT * FROM "+foodTbName, null);
+						cursor.moveToPosition(position);
+						Double total = (double) (cursor.getFloat(2)*cursor.getFloat(3));
+						tv2.setText(total.toString());
+    		
 					}	
 					
 				}
@@ -141,12 +193,16 @@ public class Tab2Activity extends Activity {
 					@Override
 					public void onClick(View v) {
 								
-						TextView quantity = (TextView)findViewById(R.id.tv_tab2_food_quantity);
-						Double total = data.get_quantity()*1.25;
-						tv2.setText(total.toString());
-						data.quantity=data.real*1.25;
+						Cursor cursor =	db_mt.rawQuery("SELECT * FROM "+foodTbName, null);
+						cursor.moveToPosition(position);
 						
-						    		
+						db_mt.execSQL("UPDATE "+ foodTbName + " SET sosu = 1.25 WHERE food_id = " + cursor.getInt(0));
+
+						cursor = db_mt.rawQuery("SELECT * FROM "+foodTbName, null);
+						cursor.moveToPosition(position);
+						Double total = (double) (cursor.getFloat(2)*cursor.getFloat(3));
+						tv2.setText(total.toString());
+    		
 					}	
 					
 				}
@@ -168,7 +224,7 @@ public class Tab2Activity extends Activity {
 
 			quantity = q;
 			foodname = f_name;
-			real= q;
+			real= 1.0;
 		}
 
 		public String get_foodname(){
@@ -185,5 +241,88 @@ public class Tab2Activity extends Activity {
         
 		
 	}
+	
+	private void initBoyGirlNumTbName() {
+		group_id = getGroupId();
+		foodTbName = "tb_food_" + group_id;
+		
+		String boyStr = getDataGr(1);
+		boyNum = Integer.parseInt(boyStr);
+		String girlStr = getDataGr(2);
+		girlNum = Integer.parseInt(girlStr);
+				
+		
+	}
+	
+
+	private void createifnotexistMemberTable() { // 테이블 생성 메소드
+		// 테이블 생성 쿼리를 정의합니다. id값과 x y 를 텍스트형태로 만듭니다.
+		Cursor cursor = db_mt.rawQuery("SELECT name FROM sqlite_master WHERE type='table'", null);
+		cursor.moveToFirst();
+		for(;;){
+			if(cursor.getString(0).equalsIgnoreCase(foodTbName)){
+				break;
+			}
+			if (!cursor.moveToNext()) {
+				String sql = "create table if not exists " + foodTbName + 
+						"(food_id INTEGER PRIMARY KEY AUTOINCREMENT, food_name text, quantity REAL, sosu REAL)";
+				db_mt.execSQL(sql);
+
+				break;
+			}
+		}
+		cursor.close();
+	}
+
+	
+
+	private void insertDataFood(String food_name, double quantity, double sosu) {
+		
+		String sql = "INSERT INTO " + foodTbName + "(food_name, quantity, sosu) values('"
+				+ food_name + "', '" + Double.toString(quantity*(boyNum+girlNum)) + "', '" + Double.toString(sosu) + "')";
+		// 마찬가지로, 정의한 쿼리를 보냅니다.
+		db_mt.execSQL(sql);
+		
+		adapter.add(new food(getApplicationContext(), quantity, food_name));
+
+	}
+	
+
+	
+	private String getDataMem(int position, int which) {// 쿼리로 값 받아오는 메소드
+		// GPS라는 테이블로부터 id,x,y값을 받아오겠다고 정의합니다.
+		String sql = "SELECT food_name, quantity, sosu FROM " + foodTbName;
+		// 정의한 쿼리를 보내기 전에, Cousor라는 친구에게 넣어줍니다.
+		Cursor cursor = db_mt.rawQuery(sql, null);
+		cursor.moveToPosition(position);
+		String temps;
+		if(which == 0) temps = cursor.getString(which);
+		else temps = String.valueOf(cursor.getInt(which));
+		cursor.close();
+		return temps;
+	}
+
+	private String getDataGr(int which) {// 쿼리로 값 받아오는 메소드
+		// GPS라는 테이블로부터 id,x,y값을 받아오겠다고 정의합니다.
+		String sql = "select groupname, boy, girl, place from tb_group";
+		// 정의한 쿼리를 보내기 전에, Cousor라는 친구에게 넣어줍니다.
+		Cursor cursor = db_mt.rawQuery(sql, null);
+		cursor.moveToPosition(group_position);
+		String temps = cursor.getString(which);
+		cursor.close();
+		return temps;
+	}
+	
+	private String getGroupId() {
+		String sql = "select group_id from tb_group";
+		Cursor cursor = db_mt.rawQuery(sql, null);
+		cursor.moveToPosition(group_position);
+		int tempn = cursor.getInt(0);
+		cursor.close();
+		String tempStr = String.valueOf(tempn);
+		return tempStr;
+	}
+	
+
 
 }

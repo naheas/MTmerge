@@ -27,7 +27,8 @@ public final class R {
         public static final int redbutton=0x7f020003;
         public static final int rosemarybutton=0x7f020004;
         public static final int tab4_lv_border=0x7f020005;
-        public static final int yellowbutton=0x7f020006;
+        public static final int whitebutton=0x7f020006;
+        public static final int yellowbutton=0x7f020007;
     }
     public static final class id {
         public static final int LinearLayout1=0x7f080023;
