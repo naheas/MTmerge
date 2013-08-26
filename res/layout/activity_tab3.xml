@@ -18,9 +18,9 @@
 
 	    <TextView
 	        android:id="@+id/tv_tab3_2"
-	        android:layout_width="match_parent"
+	        android:layout_width="112dp"
 	        android:layout_height="wrap_content"
-	        android:layout_gravity="right"
+	        android:gravity="right"
 	        android:text="0"
 	        android:textAppearance="?android:attr/textAppearanceLarge" />
 		
@@ -46,12 +46,12 @@
 	        android:textAppearance="?android:attr/textAppearanceLarge" />
 		
 		<TextView
-	        android:id="@+id/tv_tab3_5"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_gravity="right"
-	        android:text="0"
-	        android:textAppearance="?android:attr/textAppearanceLarge" />
+		    android:id="@+id/tv_tab3_5"
+		    android:layout_width="84dp"
+		    android:layout_height="wrap_content"
+		    android:gravity="right"
+		    android:text="0"
+		    android:textAppearance="?android:attr/textAppearanceLarge" />
 	
 	    <TextView
 	        android:id="@+id/tv_tab3_6"

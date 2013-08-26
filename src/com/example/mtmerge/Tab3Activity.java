@@ -65,6 +65,10 @@ public class Tab3Activity extends Activity {
 			cursor.moveToNext();
 		}
 		
+		TextView total_alc = (TextView)findViewById(R.id.tv_tab3_5);
+		String total_str = String.format("%.2f", total);
+		total_alc.setText(total_str);
+		
 		
 		TextView appro_alc = (TextView)findViewById(R.id.tv_tab3_2);
 		appro_alc.setText(Integer.toString(boyNum*2+girlNum));
@@ -78,7 +82,6 @@ public class Tab3Activity extends Activity {
 		insertDataFood(0, 4, "앱솔루트보드카 700ml");
 		insertDataFood(0, 4, "스미노프 700ml");
 		insertDataFood(0, 3.5, "예거마이스터 700ml");
-		
 
 	}
 
@@ -132,7 +135,8 @@ public class Tab3Activity extends Activity {
 						cursor.moveToPosition(position);
 						
 						db_mt.execSQL("UPDATE "+ alcTbName + " SET bot = bot+1 WHERE alc_id = " + cursor.getInt(0));
-
+						tv2.setText(String.valueOf(cursor.getInt(1) + 1));
+						
 						TextView total_alc = (TextView)findViewById(R.id.tv_tab3_5);
 						cursor = db_mt.rawQuery("SELECT * FROM "+alcTbName, null);
 						cursor.moveToFirst();
@@ -167,7 +171,8 @@ public class Tab3Activity extends Activity {
 							return;
 						
 						db_mt.execSQL("UPDATE "+ alcTbName + " SET bot = bot-1 WHERE alc_id = " + cursor.getInt(0));
-
+						tv2.setText(String.valueOf(cursor.getInt(1) - 1));
+						
 						TextView total_alc = (TextView)findViewById(R.id.tv_tab3_5);
 						cursor = db_mt.rawQuery("SELECT * FROM "+alcTbName, null);
 						cursor.moveToFirst();

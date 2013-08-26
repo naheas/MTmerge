@@ -42,10 +42,10 @@ public final class R {
         public static final int btn_main_place=0x7f080009;
         public static final int btn_newgroup_finish=0x7f080016;
         public static final int btn_tab1_add=0x7f080019;
-        public static final int btn_tab2_food_0=0x7f080034;
-        public static final int btn_tab2_food_1=0x7f080035;
-        public static final int btn_tab2_food_2=0x7f080036;
-        public static final int btn_tab2_food_3=0x7f080037;
+        public static final int btn_tab2_food_0=0x7f080032;
+        public static final int btn_tab2_food_1=0x7f080033;
+        public static final int btn_tab2_food_2=0x7f080034;
+        public static final int btn_tab2_food_3=0x7f080035;
         public static final int btn_tab3_alcohol_down=0x7f08003b;
         public static final int btn_tab3_alcohol_up=0x7f08003a;
         public static final int btn_tab4_addoutcome=0x7f080029;
@@ -83,8 +83,8 @@ public final class R {
         public static final int tv_tab1_dialog_add=0x7f08002c;
         public static final int tv_tab1_dialog_delete=0x7f08002f;
         public static final int tv_tab1_memberlist_row=0x7f080030;
-        public static final int tv_tab2_food_name=0x7f080032;
-        public static final int tv_tab2_food_quantity=0x7f080033;
+        public static final int tv_tab2_food_name=0x7f080036;
+        public static final int tv_tab2_food_quantity=0x7f080037;
         public static final int tv_tab3_1=0x7f08001c;
         public static final int tv_tab3_2=0x7f08001d;
         public static final int tv_tab3_3=0x7f08001e;
