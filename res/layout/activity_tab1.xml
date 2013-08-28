@@ -30,38 +30,38 @@
         android:id="@+id/btn_tab1_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/lv_tab1_member"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
         android:onClick="addMember"
-        android:text="추가" />
-
-    <TextView
-        android:id="@+id/tv_tab1_allnum"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView2"
-        android:layout_marginLeft="21dp"
-        android:layout_toRightOf="@+id/textView2"
-        android:text="0"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:text="새로운 멤버 추가" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/btn_tab1_add"
+        android:layout_alignBaseline="@+id/tv_tab1_allnum"
         android:layout_alignRight="@+id/textView1"
         android:layout_marginRight="18dp"
         android:text="총"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
+        android:id="@+id/tv_tab1_allnum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@+id/textView4"
+        android:gravity="right"
+        android:text="0/0"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/tv_tab1_allnum"
-        android:layout_marginLeft="14dp"
-        android:layout_toRightOf="@+id/tv_tab1_allnum"
+        android:layout_alignBaseline="@+id/tv_tab1_allnum"
+        android:layout_alignParentRight="true"
         android:text="명"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 

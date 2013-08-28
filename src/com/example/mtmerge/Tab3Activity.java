@@ -58,13 +58,11 @@ public class Tab3Activity extends Activity {
 
 		Cursor cursor =	db_mt.rawQuery("SELECT * FROM "+alcTbName, null);
 		cursor.moveToFirst();
-		Double total=0.0;
-		
+		Double total=0.0;		
 		for(int i = 0; i < cursor.getCount(); i++){
 			total+=((double)cursor.getInt(1))*cursor.getFloat(2);
 			cursor.moveToNext();
 		}
-		
 		TextView total_alc = (TextView)findViewById(R.id.tv_tab3_5);
 		String total_str = String.format("%.2f", total);
 		total_alc.setText(total_str);
@@ -82,6 +80,7 @@ public class Tab3Activity extends Activity {
 		insertDataFood(0, 4, "앱솔루트보드카 700ml");
 		insertDataFood(0, 4, "스미노프 700ml");
 		insertDataFood(0, 3.5, "예거마이스터 700ml");
+		
 
 	}
 

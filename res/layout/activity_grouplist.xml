@@ -17,7 +17,7 @@
 			android:padding = "4dip"
 			android:layout_weight="1" 
 			android:layout_marginBottom="160dp"
-			android:background="#FF5050">
+			android:background="#89BBCA">
 	  	</ListView>
 
 		<LinearLayout

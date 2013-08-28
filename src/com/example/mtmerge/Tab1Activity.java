@@ -2,9 +2,6 @@ package com.example.mtmerge;
 
 import java.util.ArrayList;
 
-import com.example.mtmerge.Tab4Activity.OutcomeUnit;
-
-
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -37,6 +34,7 @@ public class Tab1Activity extends Activity {
 	int group_position;	
 	int boyNum = 0;
 	int girlNum = 0;
+	int checkedNum = 0;
 
 	String group_id;
 	String memTbName;
@@ -71,6 +69,10 @@ public class Tab1Activity extends Activity {
 		db_mt.close();
 		super.onDestroy();
 	}
+	
+	private void setTotalNum(){
+		((TextView)findViewById(R.id.tv_tab1_allnum)).setText(String.valueOf(checkedNum) + "/" + String.valueOf(boyNum + girlNum));
+	}
 
 	// 남자 여자 수만큼 추가
 	private void initBoyGirlNumTbName() {
@@ -81,9 +83,6 @@ public class Tab1Activity extends Activity {
 		boyNum = Integer.parseInt(boyStr);
 		String girlStr = getDataGr(2);
 		girlNum = Integer.parseInt(girlStr);
-				
-		
-		((TextView)findViewById(R.id.tv_tab1_allnum)).setText(String.valueOf(boyNum + girlNum));
 	}
 	
 	private void initList() {
@@ -92,11 +91,18 @@ public class Tab1Activity extends Activity {
 		cursor.moveToFirst();
 		for(int i = 0; i < cursor.getCount(); i++){
 			mArrayList.add(cursor.getString(0));
-			if(cursor.getInt(1) == 0) mIsCheckedList.add(false);
-			else mIsCheckedList.add(true);			
+			if(cursor.getInt(1) == 0){
+				mIsCheckedList.add(false);
+			}
+			else{
+				mIsCheckedList.add(true);
+				checkedNum++;
+			}
 			cursor.moveToNext();
 		}
 		cursor.close();
+		
+		setTotalNum();
 	}
 
 	public void addMember(View v) {
@@ -114,7 +120,7 @@ public class Tab1Activity extends Activity {
 						mCustomAdapter.add("새로운 남자 이름 ");
 						mCustomAdapter.notifyDataSetChanged();
 						boyNum++;
-						((TextView)findViewById(R.id.tv_tab1_allnum)).setText(String.valueOf(boyNum + girlNum));
+						setTotalNum();
 						return;
 					}
 				});
@@ -128,7 +134,7 @@ public class Tab1Activity extends Activity {
 						mCustomAdapter.add("새로운 여자 이름 ");
 						mCustomAdapter.notifyDataSetChanged();
 						girlNum++;
-						((TextView)findViewById(R.id.tv_tab1_allnum)).setText(String.valueOf(boyNum + girlNum));
+						setTotalNum();
 						return;
 					}
 				});
@@ -173,7 +179,7 @@ public class Tab1Activity extends Activity {
 	                {
 	                	if(getDataMem(position, 2).equalsIgnoreCase("1")) girlNum--;
 	                	else boyNum--;
-	                	((TextView)findViewById(R.id.tv_tab1_allnum)).setText(String.valueOf(boyNum + girlNum));
+	                	setTotalNum();
 	                	
 	            		if(getDataMem(position, 2).equalsIgnoreCase("1")) updateBoyGirlGr(true, false); // girl, down
 	            		else updateBoyGirlGr(false, false); //boy, down
@@ -299,6 +305,10 @@ public class Tab1Activity extends Activity {
 	                // TODO Auto-generated method stub
 	            	updateMoneyDataMem(position, !isCheckedConfrim.get(position));
 	            	
+	            	if(isCheckedConfrim.get(position)) checkedNum--;
+	            	else checkedNum++;
+	            	setTotalNum();
+	            	
 	            	mCustomAdapter.setChecked(position);
 	    			// Data 변경시 호출 Adapter에 Data 변경 사실을 알려줘서 Update 함.
 	    			mCustomAdapter.notifyDataSetChanged();
@@ -355,7 +365,8 @@ public class Tab1Activity extends Activity {
      	                {
      	                	if(getDataMem(position, 2).equalsIgnoreCase("1")) girlNum--;
      	                	else boyNum--;
-     	                	((TextView)findViewById(R.id.tv_tab1_allnum)).setText(String.valueOf(boyNum + girlNum));
+     	                	if(isCheckedConfrim.get(position)) checkedNum--;     	                	
+     	                	setTotalNum();
      	                	
      	            		if(getDataMem(position, 2).equalsIgnoreCase("1")) updateBoyGirlGr(true, false); // girl, down
      	            		else updateBoyGirlGr(false, false); //boy, down

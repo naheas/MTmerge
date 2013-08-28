@@ -31,16 +31,16 @@ public final class R {
         public static final int yellowbutton=0x7f020007;
     }
     public static final class id {
-        public static final int LinearLayout1=0x7f080023;
+        public static final int LinearLayout1=0x7f080024;
         public static final int LinearLayout2=0x7f08003f;
-        public static final int RelativeLayout1=0x7f080027;
-        public static final int TextView01=0x7f080012;
+        public static final int RelativeLayout1=0x7f08001c;
+        public static final int TextView01=0x7f080014;
         public static final int action_settings=0x7f080042;
         public static final int btn_grouplist_select=0x7f080001;
         public static final int btn_main_grouplist=0x7f08000a;
         public static final int btn_main_info=0x7f08000b;
         public static final int btn_main_place=0x7f080009;
-        public static final int btn_newgroup_finish=0x7f080016;
+        public static final int btn_newgroup_finish=0x7f080017;
         public static final int btn_tab1_add=0x7f080019;
         public static final int btn_tab2_food_0=0x7f080032;
         public static final int btn_tab2_food_1=0x7f080033;
@@ -51,10 +51,10 @@ public final class R {
         public static final int btn_tab4_addoutcome=0x7f080029;
         public static final int btn_tab4_setincome=0x7f080028;
         public static final int cb_tab1_memberlist_row=0x7f080031;
-        public static final int et_newgroup_boy=0x7f080010;
-        public static final int et_newgroup_girl=0x7f080013;
+        public static final int et_newgroup_boy=0x7f080011;
+        public static final int et_newgroup_girl=0x7f080012;
         public static final int et_newgroup_groupname=0x7f08000d;
-        public static final int et_newgroup_place=0x7f080015;
+        public static final int et_newgroup_place=0x7f080016;
         public static final int et_tab1_memnewname=0x7f08002d;
         public static final int et_tab4_income=0x7f08003e;
         public static final int et_tab4_outcome_money=0x7f08003d;
@@ -71,32 +71,32 @@ public final class R {
         public static final int lv_grouplist=0x7f080000;
         public static final int lv_tab1_member=0x7f080018;
         public static final int lv_tab2_food=0x7f08001b;
-        public static final int lv_tab3_alcohol=0x7f080022;
-        public static final int lv_tab4_outcome=0x7f080026;
+        public static final int lv_tab3_alcohol=0x7f080023;
+        public static final int lv_tab4_outcome=0x7f080027;
         public static final int textView1=0x7f08000c;
         public static final int textView2=0x7f08000e;
         public static final int textView3=0x7f08000f;
-        public static final int textView4=0x7f080017;
-        public static final int textView5=0x7f080011;
-        public static final int textView6=0x7f080014;
+        public static final int textView4=0x7f080010;
+        public static final int textView5=0x7f080013;
+        public static final int textView6=0x7f080015;
         public static final int tv_tab1_allnum=0x7f08001a;
         public static final int tv_tab1_dialog_add=0x7f08002c;
         public static final int tv_tab1_dialog_delete=0x7f08002f;
         public static final int tv_tab1_memberlist_row=0x7f080030;
         public static final int tv_tab2_food_name=0x7f080036;
         public static final int tv_tab2_food_quantity=0x7f080037;
-        public static final int tv_tab3_1=0x7f08001c;
+        public static final int tv_tab3_1=0x7f08001f;
         public static final int tv_tab3_2=0x7f08001d;
         public static final int tv_tab3_3=0x7f08001e;
-        public static final int tv_tab3_4=0x7f08001f;
-        public static final int tv_tab3_5=0x7f080020;
-        public static final int tv_tab3_6=0x7f080021;
+        public static final int tv_tab3_4=0x7f080020;
+        public static final int tv_tab3_5=0x7f080021;
+        public static final int tv_tab3_6=0x7f080022;
         public static final int tv_tab3_alc_bottle=0x7f080039;
         public static final int tv_tab3_alc_name=0x7f080038;
-        public static final int tv_tab4_income=0x7f080024;
+        public static final int tv_tab4_income=0x7f080025;
         public static final int tv_tab4_lv_outcome_money=0x7f080041;
         public static final int tv_tab4_lv_outcome_name=0x7f080040;
-        public static final int tv_tab4_outcome=0x7f080025;
+        public static final int tv_tab4_outcome=0x7f080026;
         public static final int tv_tab4_remain=0x7f08002a;
     }
     public static final class layout {
@@ -134,14 +134,15 @@ public final class R {
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;
         public static final int hello_world=0x7f050002;
-        public static final int title_activity_group_list=0x7f050003;
-        public static final int title_activity_info=0x7f05000a;
-        public static final int title_activity_new_group=0x7f050004;
-        public static final int title_activity_tab1=0x7f050006;
-        public static final int title_activity_tab2=0x7f050007;
-        public static final int title_activity_tab3=0x7f050008;
-        public static final int title_activity_tab4=0x7f050009;
-        public static final int title_activity_tab_widget=0x7f050005;
+        public static final int title_activity_group_list=0x7f050004;
+        public static final int title_activity_info=0x7f05000b;
+        public static final int title_activity_new_group=0x7f050005;
+        public static final int title_activity_tab1=0x7f050007;
+        public static final int title_activity_tab2=0x7f050008;
+        public static final int title_activity_tab3=0x7f050009;
+        public static final int title_activity_tab4=0x7f05000a;
+        public static final int title_activity_tab_widget=0x7f050006;
+        public static final int title_app=0x7f050003;
     }
     public static final class style {
         /** 
@@ -170,5 +171,6 @@ public final class R {
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f060001;
+        public static final int MyTheme=0x7f060002;
     }
 }
