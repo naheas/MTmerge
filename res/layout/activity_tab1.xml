@@ -36,22 +36,13 @@
         android:text="새로운 멤버 추가" />
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/tv_tab1_allnum"
-        android:layout_alignRight="@+id/textView1"
-        android:layout_marginRight="18dp"
-        android:text="총"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <TextView
         android:id="@+id/tv_tab1_allnum"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content"        
         android:layout_marginRight="10dp"
         android:layout_toLeftOf="@+id/textView4"
+        android:layout_marginBottom="7dp"
+        android:layout_alignParentBottom="true"
         android:gravity="right"
         android:text="0/0"
         android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -60,9 +51,19 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/tv_tab1_allnum"
         android:layout_alignParentRight="true"
+        android:layout_alignBaseline="@+id/tv_tab1_allnum"
         android:text="명"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="15dp"
+        android:layout_toLeftOf="@+id/tv_tab1_allnum"
+        android:layout_alignBaseline="@+id/tv_tab1_allnum"
+        android:text="총"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>

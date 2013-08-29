@@ -11,12 +11,14 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.DialogInterface.OnShowListener;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -139,6 +141,13 @@ public class Tab4Activity extends Activity {
 		});
 
 		AlertDialog ad = aDialog.create();
+		ad.setOnShowListener(new OnShowListener() {
+		    @Override
+		    public void onShow(DialogInterface dialog) {
+		        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+		        imm.showSoftInput(((EditText) layout.findViewById(R.id.et_tab4_outcome_name)), InputMethodManager.SHOW_IMPLICIT);
+		    }
+		});
 		ad.show();
 	}
 	
@@ -180,6 +189,13 @@ public class Tab4Activity extends Activity {
 		});
 
 		AlertDialog ad = aDialog.create();
+		ad.setOnShowListener(new OnShowListener() {
+		    @Override
+		    public void onShow(DialogInterface dialog) {
+		        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+		        imm.showSoftInput(((EditText) layout.findViewById(R.id.et_tab4_income)), InputMethodManager.SHOW_IMPLICIT);
+		    }
+		});
 		ad.show();
 	}
 	

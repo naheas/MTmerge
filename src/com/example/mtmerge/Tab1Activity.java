@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnShowListener;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -16,6 +17,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -328,8 +330,9 @@ public class Tab1Activity extends Activity {
 	        		aDialog.setTitle("이름 수정하기");
 	        		
 	        		final EditText et_name = (EditText) layout.findViewById(R.id.et_tab1_memnewname);
-	        		et_name.setText(getDataMem(position, 0));
-
+	        		et_name.setText(getDataMem(position, 0));	        		
+	        		et_name.selectAll();
+	        		
 	        		aDialog.setPositiveButton("확인", new DialogInterface.OnClickListener() {
 	        			public void onClick(DialogInterface dialog, int which) {
 	        				String name = et_name.getText().toString();
@@ -344,8 +347,15 @@ public class Tab1Activity extends Activity {
 	        				return;
 	        			}
 	        		});
-
+	        		
 	        		AlertDialog ad = aDialog.create();
+	        		ad.setOnShowListener(new OnShowListener() {
+	        		    @Override
+	        		    public void onShow(DialogInterface dialog) {
+	        		        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+	        		        imm.showSoftInput(et_name, InputMethodManager.SHOW_IMPLICIT);
+	        		    }
+	        		});
 	        		ad.show();
 	            }
 	        });

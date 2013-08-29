@@ -2,9 +2,11 @@ package com.example.mtmerge;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 
@@ -33,12 +35,18 @@ public class NewGroupActivity extends Activity {
 	    
 		finish();
 	}
-
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.new_group, menu);
 		return true;
+	}
+	
+
+	public void keyboard_off_layout (View v) {
+		InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE); 
+		imm.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0);
 	}
 
 }
