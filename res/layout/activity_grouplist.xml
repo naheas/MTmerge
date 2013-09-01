@@ -4,36 +4,38 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#89BBCA"
     tools:context=".GroupListActivity" >
+	    
+    <ListView
+        android:id="@+id/lv_grouplist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="5">
+    </ListView>
 
-    <FrameLayout   
-		android:layout_width="fill_parent"   
-		android:layout_height="fill_parent">
-		
-	    <ListView
-	        android:id="@+id/lv_grouplist"
-			android:layout_width="fill_parent"
-			android:layout_height="fill_parent"
-			android:padding = "4dip"
-			android:layout_weight="1" 
-			android:layout_marginBottom="160dp"
-			android:background="#89BBCA">
-	  	</ListView>
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_weight="1" >
 
-		<LinearLayout
-		    android:layout_width="fill_parent"
-		    android:layout_height="fill_parent"
-		    android:gravity="bottom" >
+        <ImageButton
+            android:id="@+id/btn_grouplist_select"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:onClick="go_btn_grouplist_select"
+            android:src="@drawable/darkbluebutton" />
 
-		    <ImageButton
-		        android:id="@+id/btn_grouplist_select"
-		        android:layout_width="match_parent"
-		        android:layout_height="160dp"
-		        android:layout_weight="3"
-		        android:onClick="go_btn_grouplist_select"
-		        android:src="@drawable/darkbluebutton" />
-		</LinearLayout>
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_column="0"
+            android:layout_gravity="center"
+            android:layout_row="0"
+            android:text="새 그룹 만들기"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
 
-	</FrameLayout>
+    </GridLayout>
 
 </LinearLayout>

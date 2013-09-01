@@ -24,7 +24,7 @@
         </activity>
         <activity
             android:name="com.example.mtmerge.GroupListActivity"
-            android:label="@string/title_app" >
+            android:label="@string/title_activity_group_list" >
         </activity>
         <activity
             android:name="com.example.mtmerge.NewGroupActivity"

@@ -94,6 +94,8 @@ public class GroupListActivity extends Activity {
     		
     		if(!isStringInt(boyStr)) boyStr = "0";
     		if(!isStringInt(girlStr)) girlStr = "0";
+    		if(groupnameStr.isEmpty()) groupnameStr = "";
+    		if(placeStr.isEmpty()) groupnameStr = "";
     		
     		insertData(groupnameStr, boyStr, girlStr, placeStr);
     		refresh(groupnameStr);
@@ -175,7 +177,7 @@ public class GroupListActivity extends Activity {
 		int tempn = cursor.getInt(0);
 		cursor.close();
 		String tempStr = String.valueOf(tempn);
-		db_mt.execSQL("drop table tb_member_" + tempStr);
+		db_mt.execSQL("drop table if exists tb_member_" + tempStr);
 	}
 	
 	private void deleteOutcomeTable(int position) { // 테이블 생성 메소드
@@ -187,7 +189,7 @@ public class GroupListActivity extends Activity {
 		int tempn = cursor.getInt(0);
 		cursor.close();
 		String tempStr = String.valueOf(tempn);
-		db_mt.execSQL("drop table tb_outcome_" + tempStr);
+		db_mt.execSQL("drop table if exists tb_outcome_" + tempStr);
 	}
 	
 	private void deleteFoodTable(int position) { // 테이블 생성 메소드
@@ -199,7 +201,7 @@ public class GroupListActivity extends Activity {
 		int tempn = cursor.getInt(0);
 		cursor.close();
 		String tempStr = String.valueOf(tempn);
-		db_mt.execSQL("drop table tb_food_" + tempStr);
+		db_mt.execSQL("drop table if exists tb_food_" + tempStr);
 	}
 	
 	private void deleteAlcTable(int position) { // 테이블 생성 메소드
@@ -211,7 +213,7 @@ public class GroupListActivity extends Activity {
 		int tempn = cursor.getInt(0);
 		cursor.close();
 		String tempStr = String.valueOf(tempn);
-		db_mt.execSQL("drop table tb_alc_" + tempStr);
+		db_mt.execSQL("drop table if exists tb_alc_" + tempStr);
 	}
 
 

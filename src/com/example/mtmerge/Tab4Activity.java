@@ -95,6 +95,7 @@ public class Tab4Activity extends Activity {
 		SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
 		total_income = pref.getInt("income" + group_id, 0);
 		((TextView) findViewById(R.id.tv_tab4_income)).setText(String.valueOf(total_income) + " ¿ø");
+		((TextView) findViewById(R.id.tv_tab4_outcome)).setText(String.valueOf(total_outcome) + " ¿ø");
 		
 		setRemainMoney();
 	}
