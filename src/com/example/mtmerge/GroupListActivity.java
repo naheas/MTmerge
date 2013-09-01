@@ -8,13 +8,17 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.view.Menu;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class GroupListActivity extends Activity {
 	private static final int NewGr_ACTIVITY = 1;
@@ -27,7 +31,10 @@ public class GroupListActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		Window win = getWindow();
+        win.requestFeature(Window.FEATURE_CUSTOM_TITLE);	
 		setContentView(R.layout.activity_grouplist);
+        win.setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.grouplist_titlebar);
 
 		db_mt = openOrCreateDatabase("db_mt", MODE_PRIVATE, null);
 		createifnotexistTable(); //테이블 생성 메소드 불러오기
@@ -40,11 +47,24 @@ public class GroupListActivity extends Activity {
     }
 
 	private void settingListView() {  
-        _arrAdapter = new ArrayAdapter<String>( getApplicationContext(), android.R.layout.simple_list_item_1 ) ;  
+        _arrAdapter= new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1)
+        {
 
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                View view =super.getView(position, convertView, parent);
+
+                TextView textView=(TextView) view.findViewById(android.R.id.text1);
+
+                /*YOUR CHOICE OF COLOR*/
+                textView.setTextColor(Color.BLACK);
+
+                return view;
+            }
+        };
+        
         ListView listView = (ListView) findViewById(R.id.lv_grouplist) ;
         listView.setAdapter( _arrAdapter ) ;
-        
         String sql = "select groupname, boy, girl, place from tb_group";
 		Cursor cursor = db_mt.rawQuery(sql, null);
 		cursor.moveToFirst();
@@ -65,6 +85,8 @@ public class GroupListActivity extends Activity {
         {
         	Intent intent_tabwidget = new Intent(GroupListActivity.this, TabWidgetActivity.class);
         	intent_tabwidget.putExtra("group_position", position);
+        	String tempStr = _arrAdapter.getItem(position);
+        	intent_tabwidget.putExtra("group_name", tempStr);        	
         	startActivity(intent_tabwidget);
         	
         }        
@@ -95,7 +117,7 @@ public class GroupListActivity extends Activity {
     		if(!isStringInt(boyStr)) boyStr = "0";
     		if(!isStringInt(girlStr)) girlStr = "0";
     		if(groupnameStr.isEmpty()) groupnameStr = "";
-    		if(placeStr.isEmpty()) groupnameStr = "";
+    		if(placeStr.isEmpty()) placeStr = "";
     		
     		insertData(groupnameStr, boyStr, girlStr, placeStr);
     		refresh(groupnameStr);
@@ -104,8 +126,8 @@ public class GroupListActivity extends Activity {
 
 
 	private void refresh( String inputValue ) {  
-        _arrAdapter.add( inputValue ) ;  
-        _arrAdapter.notifyDataSetChanged() ;  
+        _arrAdapter.add( inputValue );  
+        _arrAdapter.notifyDataSetChanged();  
     }
 
 

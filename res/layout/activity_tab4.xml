@@ -67,19 +67,25 @@
 
         <Button
             android:id="@+id/btn_tab4_setincome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="130dp"
+            android:layout_height="35dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
+        	android:background="#305579"
+        	android:textColor="#FFFFFF"
+        	android:textStyle="bold"
             android:onClick="go_btn_tab4_setincome"
             android:text="총 걷을 돈 입력" />
         
         <Button
             android:id="@+id/btn_tab4_addoutcome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="35dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
+        	android:background="#305579"
+        	android:textColor="#FFFFFF"
+        	android:textStyle="bold"
             android:onClick="go_btn_tab4_addoutcome"
             android:text="지출 추가" />
 

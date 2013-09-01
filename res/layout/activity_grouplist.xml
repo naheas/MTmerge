@@ -4,19 +4,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#89BBCA"
+    android:background="#7789BBCA"
     tools:context=".GroupListActivity" >
 	    
     <ListView
         android:id="@+id/lv_grouplist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="5">
+        android:layout_weight="3">
     </ListView>
 
     <GridLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="150dp"
         android:layout_weight="1" >
 
         <ImageButton

@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
+import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
@@ -15,7 +16,10 @@ public class NewGroupActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		Window win = getWindow();
+        win.requestFeature(Window.FEATURE_CUSTOM_TITLE);	
 		setContentView(R.layout.activity_newgroup);
+        win.setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.newgroup_titlebar);
 	}
 	
 	public void go_btn_newgroup_finish (View v) {

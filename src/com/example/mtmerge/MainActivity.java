@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageButton;
 
 public class MainActivity extends Activity {
@@ -12,8 +13,12 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		Window win = getWindow();
+        win.requestFeature(Window.FEATURE_CUSTOM_TITLE);	
 		setContentView(R.layout.activity_main);
-	
+        win.setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.main_titlebar);
+       
+        
 		
 		ImageButton gogrouplist = (ImageButton)findViewById(R.id.btn_main_grouplist);
 		gogrouplist.setOnClickListener(new ImageButton.OnClickListener(){

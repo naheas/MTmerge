@@ -3,7 +3,7 @@
     android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#89BBCA"
+    android:background="#7789BBCA"
     android:onClick="keyboard_off_layout"
     android:orientation="vertical"
     tools:context=".NewgroupActivity" >
@@ -26,7 +26,7 @@
             android:layout_alignParentTop="true"
             android:text="새로운 그룹"
             android:textSize="30sp"
-            android:textColor="#FFFFFF" />
+             />
 
         <EditText
             android:id="@+id/et_newgroup_groupname"
@@ -51,7 +51,7 @@
             android:layout_marginTop="50dp"
             android:text="남자"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#FFFFFF" />
+             />
 
         <TextView
             android:id="@+id/textView4"
@@ -62,7 +62,7 @@
             android:layout_marginLeft="33dp"
             android:text="여자"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#FFFFFF" />
+             />
 
         <TextView
             android:id="@+id/textView5"
@@ -73,7 +73,7 @@
             android:layout_toRightOf="@+id/et_newgroup_boy"
             android:text="명"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#FFFFFF" />
+             />
 
         <TextView
             android:id="@+id/TextView01"
@@ -84,7 +84,7 @@
             android:layout_toRightOf="@+id/et_newgroup_girl"
             android:text="명"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#FFFFFF" />
+             />
 
         <TextView
             android:id="@+id/textView6"
@@ -95,7 +95,7 @@
             android:layout_marginTop="50dp"
             android:text="MT 장소"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#FFFFFF" />
+             />
 
         <EditText
             android:id="@+id/et_newgroup_place"
@@ -119,7 +119,7 @@
             android:layout_marginTop="60dp"
             android:text="그룹 이름"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#FFFFFF" />
+             />
 
         <EditText
             android:id="@+id/et_newgroup_girl"
@@ -162,7 +162,7 @@
             android:layout_gravity="center"
             android:layout_row="0"
             android:text="입력 완료"
-            android:textColor="#FFFFFF"
+			android:textColor="#FFFFFF"
             android:textSize="30sp" />
     </GridLayout>
 

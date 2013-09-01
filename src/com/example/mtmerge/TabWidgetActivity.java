@@ -6,14 +6,18 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.view.Window;
 import android.widget.TabHost;
+import android.widget.TextView;
 
 public class TabWidgetActivity extends TabActivity{
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_tabwidget);
+//        requestWindowFeature(Window.FEATURE_NO_TITLE);
+		Window win = getWindow();
+        win.requestFeature(Window.FEATURE_CUSTOM_TITLE);	
+		setContentView(R.layout.activity_tabwidget);
+        win.setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.tabwidget_titlebar);
         
         Resources res = getResources();  //府家胶 按眉 积己
         TabHost tabHost = getTabHost();  //TabHost 按眉 积己
@@ -22,6 +26,9 @@ public class TabWidgetActivity extends TabActivity{
         
         Intent intent_temp = getIntent();
 		int group_position = intent_temp.getExtras().getInt("group_position");
+		String group_name = intent_temp.getExtras().getString("group_name");
+		
+		((TextView) findViewById(R.id.tv_tabwidget_title_left)).setText(group_name);
         
         intent_tab = new Intent(this, Tab1Activity.class);
         intent_tab.putExtra("group_position", group_position);
